@@ -29,8 +29,12 @@ class App extends Component {
       console.log(x.split(''))
     }
 
-    start.addEventListener("click", fetchWord)
+    function letterEvent(e){
+      console.log(e.key)
+    }
 
+    start.addEventListener("click", fetchWord);
+    document.addEventListener('keydown', letterEvent)
 
   }
   render() {
