@@ -67,7 +67,7 @@ class App extends Component {
 
     return (
 
-        <div className="App-header">
+        <div className="mainDiv">
           <h2>Wisielec</h2>
           <button id="start">start</button>
           <br/>
