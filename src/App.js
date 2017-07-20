@@ -12,6 +12,8 @@ class App extends Component {
     var i
     var numberOfLife = 7
     var numberOfGuessedLetters = 0
+    var arrayWithGuessedLetters = []
+    var arrayWithAllTypedLetters = []
 
     function fetchWord(){
       fetch(word_API).then(
@@ -48,21 +50,30 @@ class App extends Component {
       console.log(randomWord);
       console.log(randomWord.length);
       console.log(e.key);
+      arrayWithAllTypedLetters.push(e.key);
       for(i=0; i<randomWord.length; i++){
         if (randomWord[i] === e.key){
 
+
           document.getElementById(i).innerHTML = ' ' + e.key + ' ';
           numberOfGuessedLetters += 1;
-          console.log('trafione');
-          console.error(numberOfGuessedLetters);
+          arrayWithGuessedLetters.push(e.key);
+
+          // console.error(numberOfGuessedLetters);
           if(numberOfGuessedLetters === randomWord.length){
-            console.error('wygrałeś!!')
+            // console.error('wygrałeś!!')
           }
         }
         else {
           console.log('nietrafione')
          }
       }
+          console.error('arrayWithGuessedLetters');
+          console.log(arrayWithGuessedLetters);
+          console.error('arrayWithAllTypedLetters');
+          console.log(arrayWithAllTypedLetters)
+
+      // if(){}
     }
 
 
