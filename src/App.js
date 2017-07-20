@@ -30,7 +30,7 @@ class App extends Component {
     function wordSplit(x){
       console.log(x);
       // console.log(x.split(''));
-      randomWord = x.split('')
+      randomWord = x.toLowerCase().split('')
       showNullLetters()
     }
 
