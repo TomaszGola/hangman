@@ -9,7 +9,10 @@ class App extends Component {
     var placeForWord = document.getElementById("placeForWord");
     const word_API = 'http://api.wordnik.com:80/v4/words.json/randomWords?hasDictionaryDef=true&minCorpusCount=0&maxCorpusCount=-1&minDictionaryCount=1&maxDictionaryCount=-1&minLength=5&maxLength=-1&limit=1&api_key=a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5'
     var randomWord
+    var randomWordWithoutDuplication
     var i
+    var lettersCorrect = []
+    var lettersMissed = []
 
     function fetchWord(){
       fetch(word_API).then(
@@ -31,6 +34,8 @@ class App extends Component {
       console.log(x);
       // console.log(x.split(''));
       randomWord = x.toLowerCase().split('')
+      randomWordWithoutDuplication = [...new Set(randomWord)];
+      console.log(randomWordWithoutDuplication);
       showNullLetters()
     }
 
@@ -48,12 +53,20 @@ class App extends Component {
       // console.log(e.key);
 
       if(randomWord.indexOf(e.key) !== -1 ){
-        console.log('trafione ' + e.key)
+        lettersCorrect.push(e.key)
+        // console.log('trafione ' + e.key)
       } else {
-        console.error('nie trafione ' + e.key)
+        lettersMissed.push(e.key)
+        // console.error('nie trafione ' + e.key)
       }
 
+      if(lettersCorrect.length === randomWordWithoutDuplication.length){
+        console.log('wow, you did it')
+      }
 
+      if(lettersMissed.length === 7){
+        console.log("you're looser")
+      }
 
       for(i=0; i<randomWord.length; i++){
         if (randomWord[i] === e.key){
