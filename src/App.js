@@ -7,7 +7,7 @@ class App extends Component {
 
     var start = document.getElementById("start");
     var placeForWord = document.getElementById("placeForWord");
-    var placeForTypedLetters = document.getElementById("placeForTypedLetters");
+    var placeForMissedLetters = document.getElementById("placeForMissedLetters");
     const word_API = 'http://api.wordnik.com:80/v4/words.json/randomWords?hasDictionaryDef=true&minCorpusCount=0&maxCorpusCount=-1&minDictionaryCount=1&maxDictionaryCount=-1&minLength=5&maxLength=-1&limit=1&api_key=a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5'
     var randomWord
     var randomWordWithoutDuplication
@@ -39,7 +39,7 @@ class App extends Component {
 
     function showNullLetters() {
       for(i=0; i<randomWord.length; i++){
-        var nullLetter = '<span id="' + i + '"> _ </span>';
+        var nullLetter = '<span id="' + i + '"> </span>';
         placeForWord.insertAdjacentHTML('beforebegin', nullLetter)
       }
     }
@@ -49,7 +49,9 @@ class App extends Component {
       if(randomWord.indexOf(e.key) !== -1 ){
         lettersCorrect.push(e.key)
       } else {
-        lettersMissed.push(e.key)
+        lettersMissed.push(e.key);
+        var missedLetter = '<span> ' + e.key + ' </span>';
+        placeForMissedLetters.insertAdjacentHTML('beforebegin', missedLetter);
       }
 
       if(lettersCorrect.length === randomWordWithoutDuplication.length){
@@ -62,11 +64,10 @@ class App extends Component {
 
       for(i=0; i<randomWord.length; i++){
         if (randomWord[i] === e.key){
-          document.getElementById(i).innerHTML = ' ' + e.key + ' ';
+          document.getElementById(i).innerHTML = e.key;
+          document.getElementById(i).className = 'correctLetter';
           }
       }
-
-      placeForTypedLetters.insertAdjacentHTML('beforebegin', e.key);  
     }
 
     start.addEventListener("click", fetchWord);
@@ -78,16 +79,28 @@ class App extends Component {
     return (
 
         <div className="mainDiv">
-          <h2>Wisielec</h2>
+
           <button id="start">start</button>
           <br/>
-          <div id='placeForWord'>
+          <div>
+          <div className='hangmanSvg'>
+            
+          </div>
+          <div className='placeForMissedLetters'>
+            <p>you missed:</p>
+            <div id='placeForMissedLetters'>
 
+            </div>
+          </div>
+          <div className='cleaner'></div>
+          </div>
+          <div className='placeForWord'>
+            <div id='placeForWord'>
+
+            </div>
           </div>
           <br/>
-          <div id='placeForTypedLetters'>
 
-          </div>
         </div>
 
     );

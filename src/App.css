@@ -4,8 +4,61 @@ body{
 
 .mainDiv{
   margin: 50px;
+  height:50vh;
   background-color: rgb(245,245,245);
   border: solid 1px;
   border-radius: 5px;
   text-align: center;
+
+}
+
+.hangmanSvg{
+  width:50%;
+  float: left;
+}
+
+.placeForMissedLetters {
+  width:50%;
+  float: left;
+  margin-right:0;
+  text-align: left;
+}
+.cleaner {
+  clear:both;
+}
+
+.placeForMissedLetters span {
+  text-transform: uppercase;
+  color: rgb(77,105,250);
+}
+
+.placeForWord {
+  display: inline-flex;
+  height: 30px;
+  margin:2px;
+}
+
+.placeForWord span {
+  margin:2px;
+  display:inline-block;
+  background-color: rgb(230,230,231);
+  border-radius: 2px;
+  width:30px;
+  height:30px;
+  text-transform: uppercase;
+  text-align: center;
+  line-height: 30px;
+  font-size: 20px;
+}
+
+.placeForWord .correctLetter {
+  background-color: rgb(83,85,93);
+}
+
+.triangle {
+  width:0;
+  height:0;
+  border-style:solid;
+  border-width: 0 0 100px 100px;
+  border-color: transparent transparent #000 transparent;
 }
