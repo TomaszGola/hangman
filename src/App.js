@@ -5,6 +5,8 @@ import './App.css';
 class App extends Component {
   componentDidMount(){
 
+    var reloadButtonLoose = document.getElementById('reloadLoose');
+    var reloadButtonWon = document.getElementById('reloadWon');
     var placeForWord = document.getElementById("placeForWord");
     var placeForMissedLetters = document.getElementById("placeForMissedLetters");
     const word_API = 'http://api.wordnik.com:80/v4/words.json/randomWords?hasDictionaryDef=true&minCorpusCount=0&maxCorpusCount=-1&minDictionaryCount=1&maxDictionaryCount=-1&minLength=5&maxLength=-1&limit=1&api_key=a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5'
@@ -35,6 +37,7 @@ class App extends Component {
       randomWord = x.toLowerCase().split('')
       randomWordWithoutDuplication = [...new Set(randomWord)];
       showNullLetters()
+      console.log(randomWord)
     }
 
     function showNullLetters() {
@@ -59,10 +62,12 @@ class App extends Component {
 
       if(lettersCorrect.length === randomWordWithoutDuplication.length){
         console.log('wow, you did it')
+        document.getElementById('gameWon').style.display = 'block'
       }
 
-      if(lettersMissed.length === 7){
+      if(lettersMissed.length === 11){
         console.log("you're looser")
+        document.getElementById('gameOver').style.display = 'block'
       }
 
       for(i=0; i<randomWord.length; i++){
@@ -73,6 +78,12 @@ class App extends Component {
       }
     }
 
+    function reloadFunction(){
+      window.location.reload()
+    }
+
+    reloadButtonLoose.addEventListener('click', reloadFunction);
+    reloadButtonWon.addEventListener('click', reloadFunction);
     window.document.onLoad = fetchWord();
     document.addEventListener('keydown', letterEvent)
 
@@ -148,8 +159,14 @@ class App extends Component {
             <div className='placeForWord'>
               <div id='placeForWord'></div>
             </div>
-
-
+            <div id='gameOver'>
+              <p>you loose the game. click to play one more time</p>
+              <button id='reloadLoose'>again</button>
+            </div>
+            <div id='gameWon'>
+              <p>You won the game. click to play one more time</p>
+              <button id='reloadWon'>again</button>
+            </div>
         </div>
 
     );

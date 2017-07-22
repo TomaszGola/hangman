@@ -68,3 +68,7 @@ body{
   border-width: 0 0 100px 100px;
   border-color: transparent transparent #000 transparent;
 }
+
+#gameOver, #gameWon {
+  display:none;
+}
