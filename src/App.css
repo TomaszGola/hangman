@@ -16,6 +16,7 @@ body{
   width:49.3%;
   height:auto;
   float: left;
+  margin-top:10px;
 }
 .hangmanSvg svg {
   display:flex;
